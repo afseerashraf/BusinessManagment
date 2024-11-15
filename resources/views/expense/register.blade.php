@@ -79,7 +79,7 @@
 
 <div class="container">
     <h3>Expense Detiles</h3>
-    <form action="" method="post">
+    <form action="{{ route('expense.register') }}" method="post">
         @csrf
 
         <div class="row">
@@ -95,7 +95,7 @@
             </div>
             <div class="col">
                 <label for="description">Description</label>
-                <input type="text" name="description" placeholder="description number"">
+                <input type="text" name="description" placeholder="description">
     @error('description') <div class=" alert">{{ $message }}
             </div> @enderror
         </div>
@@ -104,7 +104,7 @@
 <div class="row">
     <div class="col">
         <label for="amount">Amount</label>
-        <input type="text" name="amount">
+        <input type="text" name="amount" placeholder="amount">
         @error('ampunt') <div class="alert">{{ $message }}</div> @enderror
     </div>
     <div class="col">

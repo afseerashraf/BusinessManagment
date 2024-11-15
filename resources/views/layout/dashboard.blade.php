@@ -132,7 +132,7 @@
         <a href="{{ route('invoice.index') }}">Invoice</a>
         <a href="{{ route('vendor.index') }}">Vendor</a>
         <a href="{{ route('expense.index') }}">Expense</a>
-
+        <a href="{{ route('bank.index') }}">Bank Detiles</a>
 
 
         <a href="#">Settings</a>
@@ -150,7 +150,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 Clinic Management. All Rights Reserved.</p>
+        <p>&copy; 2024 Business Management. All Rights Reserved.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
