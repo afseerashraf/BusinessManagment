@@ -34,6 +34,10 @@
 <div class="container">
     <div class="login-container">
         <h3>Admin Login Form</h3>
+        @if(Session::has('login'))
+            <p>{{ Session::get('login') }}</p>
+        @endif
+
         <a href="{{ route('user.index') }}">No account? Register here</a>
 
         <form action="{{ route('user.dologin') }}" method="POST">

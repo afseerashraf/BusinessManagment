@@ -33,8 +33,8 @@
 
 <div class="container">
     <div class="register-container">
-        <h3>Admin Register Form</h3>
-        <a href="#">Already have an account?</a>
+        <h3>User Register Form</h3>
+        <a href="{{ route('user.login') }}">Already have an account?</a>
 
         <form action="{{ route('user.register') }}" method="POST">
             @csrf

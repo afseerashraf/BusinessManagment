@@ -127,15 +127,20 @@
        
     <!-- Sidebar -->
     <div class="sidebar">
-        <a href="#">Home</a>
+        
+        <a href="{{ route('user.profile') }}">profile</a>
         <a href="{{ route('customer.index') }}">customer Information</a>
         <a href="{{ route('invoice.index') }}">Invoice</a>
         <a href="{{ route('vendor.index') }}">Vendor</a>
+       
+        @can('manage Expense and bank')
         <a href="{{ route('expense.index') }}">Expense</a>
         <a href="{{ route('bank.index') }}">Bank Detiles</a>
-
-
         <a href="#">Settings</a>
+        @endcan
+        
+        
+       
     </div>
 
     <!-- Main Content -->

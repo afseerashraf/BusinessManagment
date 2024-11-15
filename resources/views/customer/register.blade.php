@@ -36,7 +36,6 @@
 <div class="container">
     <div class="register-container">
         <h3>Customer Register Form</h3>
-
         <form action="{{ route('customer.register') }}" method="POST">
             @csrf
             <div class="row">

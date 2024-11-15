@@ -16,6 +16,8 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::post('register', 'register')->name('register');
         Route::view('login', 'user.login')->name('login');
         Route::post('logined', 'login')->name('dologin');
+        Route::view('profile', 'user.profile')->name('profile');
+        Route::get('logout/{id}', 'logout')->name('logout');
     });
 });
 
