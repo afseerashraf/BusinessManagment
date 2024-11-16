@@ -27,4 +27,10 @@ class InvoiceController extends Controller
         
 
     }
+
+
+    public function outstandingInvoice(){
+        $invoices = Invoice::all();
+        return view('invoice.outstandingInvoice', compact('invoices'));
+    }
 }

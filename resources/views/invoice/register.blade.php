@@ -84,7 +84,7 @@
 <div class="row">
     <div class="col">
     <label for="customer">Select customer</label>
-    <select name="customer_id">
+    <select name="customer_id" value="{{ old('customer_id') }}">
     <option value="" selected>--Select Customer--</option>
         @foreach($customers as $customer)
         <option value="{{ $customer->id }}">{{ $customer->name }} ({{ $customer->address }})</option>
@@ -94,7 +94,7 @@
     </div>
 <div class="col">
     <label for="invoice_number">Invoice Number</label>
-    <input type="text" name="invoice_number" placeholder="invoice number"">
+    <input type="text" name="invoice_number" placeholder="invoice number"" value="{{ old('invoice_number') }}">
     @error('invoice_number') <div class="alert">{{ $message }}</div> @enderror
 </div>
 </div>
@@ -102,12 +102,12 @@
 <div class="row">
     <div class="col">
     <label for="date">Date</label>
-    <input type="date" name="date">
+    <input type="date" name="date" value="{{ old('date') }}">
     @error('date') <div class="alert">{{ $message }}</div> @enderror
     </div>
 <div class="col">
     <label for="duedate">Due Date</label>
-    <input type="date" name="duedate">
+    <input type="date" name="duedate" value="{{ old('duedate') }}">
     @error('duedate') <div class="alert">{{ $message }}</div> @enderror
     </div>
 </div>
@@ -115,18 +115,18 @@
 <div class="row">
     <div class="col">
     <label for="totalamount">Total Amount</label>
-    <input type="text" class="form-controller" name="total_amount" placeholder="Enter amount">
+    <input type="text" class="form-controller" name="total_amount" placeholder="Enter amount" value="{{ old('total_amount') }}">
     @error('total_amount') <p class="error-message">{{ $message }}</p> @enderror
     </div>
 <div class="col">
     <label for="name">Status</label>
-    <input type="text" name="status" placeholder="status">
+    <input type="text" name="status" placeholder="status" value="{{ old('satus') }}">
     @error('status') <div class="alert">{{ $message }}</div> @enderror
     </div>
 </div>
   
     <label for="note" class="form-label">Note</label>
-    <input type="text" id="note" name="note" class="form-control" rows="4" placeholder="Note"></input>
+    <input type="text" id="note" name="note" class="form-control" rows="4" placeholder="Note" value="{{ old('note') }}"></input>
     @error('note') <div class="alert alert-danger">{{ $message }}</div> @enderror
     
 

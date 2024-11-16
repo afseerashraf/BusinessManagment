@@ -72,6 +72,17 @@
             background-color: #3b82f6; /* Light blue hover effect */
             color: #121212;
         }
+        .dropdown .dropdown-menu .dropdown-item {
+            color: #000; 
+            background-color: #fff; 
+            transition: background-color 0.3s, color 0.3s; 
+        }
+
+
+        .dropdown .dropdown-menu .dropdown-item:hover {
+            background-color: #3b82f6; /* Light blue background on hover */
+            color: #fff; /* White text on hover */
+        }       
 
         /* Main Content */
         .content {
@@ -129,15 +140,52 @@
     <div class="sidebar">
         
         <a href="{{ route('user.profile') }}">profile</a>
-        <a href="{{ route('customer.index') }}">customer Information</a>
-        <a href="{{ route('invoice.index') }}">Invoice</a>
-        <a href="{{ route('vendor.index') }}">Vendor</a>
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Customer Information</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ route('customer.index') }}">Register Customer</a></li>
+            <li><a class="dropdown-item" href="{{ route('customer.customers') }}">View Customer</a></li>
+        </ul>
+    </div>
+
+
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Invoice</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ route('invoice.index') }}">Register Invoice</a></li>
+            <li><a class="dropdown-item" href="{{ route('invoice.outstandingInvoice') }}">View Invoice</a></li>
+        </ul>
+    </div>
+
+
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Vendor</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ route('vendor.index') }}">Register Vendor</a></li>
+            <li><a class="dropdown-item" href="#">View Vendor</a></li>
+        </ul>
+    </div>
+      
        
-        @can('manage Expense and bank')
-        <a href="{{ route('expense.index') }}">Expense</a>
-        <a href="{{ route('bank.index') }}">Bank Detiles</a>
+
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Expense</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ route('expense.index') }}">register Expense</a></li>
+            <li><a class="dropdown-item" href="#">View Expence Detiles</a></li>
+        </ul>
+    </div>
+
+        
+
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Bank</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ route('bank.index') }}">Register Bank Detiles</a></li>
+            <li><a class="dropdown-item" href="#">View Bank Detiles</a></li>
+        </ul>
+    </div>
         <a href="#">Settings</a>
-        @endcan
         
         
        

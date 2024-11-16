@@ -15,4 +15,10 @@ class CustomerController extends Controller
         $customer->address = $request->address;
         $customer->save();
     }
+
+
+    public function customers(){
+        $customers = Customer::all();
+        return view('customer.activeCustomers', compact('customers'));
+    }
 }
