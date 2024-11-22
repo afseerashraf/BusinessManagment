@@ -43,10 +43,10 @@
 @section('content')
 
 <div class="container">
-    <h3>user Details</h3>
+    <h3>User Details</h3>
     <ul>
-        <li><strong>Name:</strong> {{ session('user')->name }}</li>
-        <li><strong>Email:</strong> {{session('user')->email }}</li>
+        <li><strong>Name:</strong> {{ ucfirst(session('user')->name) }}</li>
+        <li><strong>Email:</strong> {{ session('user')->email }}</li>
         <a href="{{ route('user.logout', encrypt(session('user')->id )) }}" class="btn btn-outline-danger">Logout</a>
     </ul>
 

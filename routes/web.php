@@ -28,6 +28,10 @@ Route::middleware('auth')->group(function () {
             Route::view('/', 'customer.register')->name('index');
             Route::post('register', 'register')->name('register');
             Route::get('customers', 'customers')->name('customers');
+            Route::get('edit/{id}', 'edit')->name('edit');
+            Route::post('updated', 'updated')->name('updated');
+            Route::get('delete/{id}', 'delete')->name('delete');
+            Route::get('overdue', 'overDueCustomer')->name('overdue');
         });
     });
 
@@ -38,6 +42,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('register', 'register')->name('register');
             Route::get('invoices', 'outstandingInvoice')->name('outstandingInvoice');
+            Route::get('edit/{id}', 'edit')->name('edit');
+            Route::post('updated', 'updated')->name('updated');
+            Route::get('overdue', 'overDueInvolice');
         });
     });
 
@@ -45,6 +52,10 @@ Route::middleware('auth')->group(function () {
         Route::controller(VendorController::class)->group(function () {
             Route::view('/', 'vendor.register')->name('index');
             Route::post('register', 'register')->name('register');
+            Route::get('vendors', 'vendors')->name('vendors');
+            Route::get('edit/{id}', 'edit')->name('edit');
+            Route::post('updated', 'updated')->name('updated');
+            Route::get('delete/{id}', 'delete')->name('delete');
         });
     });
 
@@ -52,6 +63,9 @@ Route::middleware('auth')->group(function () {
         Route::controller(ExpensesController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('register', 'register')->name('register');
+            Route::get('expenses', 'expenses')->name('expenses');
+            Route::get('edit/{id}', 'edit')->name('edit');
+            Route::post('updated', 'updated')->name('updated');
         });
     });
 

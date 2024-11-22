@@ -1,6 +1,6 @@
 @extends('layout.dashboard')
 
-@section('title', 'Active Customers')
+@section('title', 'vendors')
 
 @section('content')
 
@@ -80,20 +80,21 @@
     }
 </style>
 
-    @if(session()->has('update'))
-    <p>{{ Session::get('update') }}</p>
+<div class="container">
+    <h3>Vendors</h3>
+   
+    @if(session()->has('updated'))
+        <p>{{ Session::get('updated') }}</p>
     @endif
 
-    @if(session()->has('delete'))
-    <p>{{ Session::get('delete')}}</p>
+    @if(Session::has('delete'))
+        <p>{{ Session::get('delete') }}</p>
     @endif
-<div class="container">
-    <h3>Active Customers</h3>
-    <table class="table">
+    <table class="table table-dark table-striped">
         <thead>
             <tr>
-                <th>No</th>
                 <th>Name</th>
+                <th>Contact Person</th>
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Address</th>
@@ -101,17 +102,17 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($customers as $customer)
+            @foreach($vendors as $vendor)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ ucfirst($customer->name) }}</td>
-                    <td>{{ $customer->email }}</td>
-                    <td>{{ $customer->phone }}</td>
-                    <td>{{ $customer->address }}</td>
-                    <td>
-                    <a href="{{ route('customer.edit', encrypt($customer->id)) }}" class="btn btn-outline-primary btn-sm">Edit</a>
-                   <a href="{{ route('customer.delete', encrypt($customer->id)) }}" class="btn btn-outline-danger btn-sm">Remove</a>
-                </td>
+                   <td>{{ $vendor->name }}</td>
+                   <td>{{ $vendor->contact_person }}</td>
+                   <td>{{ $vendor->email }}</td>
+                   <td>{{ $vendor->phone }}</td>
+                   <td>{{ $vendor->address }}</td>
+                   <td>
+                    <a href="{{ route('vendor.edit', encrypt($vendor->id)) }}" class="btn btn-outline-primary btn-sm">Edit</a>
+                    <a href="{{ route('vendor.delete', encrypt($vendor->id)) }}" class="btn btn-outline-danger btn-sm">Delete</a>
+                   </td>
                 </tr>
             @endforeach
         </tbody>

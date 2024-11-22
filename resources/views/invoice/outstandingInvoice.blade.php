@@ -82,7 +82,7 @@
 
 <div class="container">
     <h3>Active Customers</h3>
-    <table class="table">
+    <table class="table table-dark table-striped">
         <thead>
             <tr>
                 <th>customer Name</th>
@@ -98,17 +98,24 @@
         <tbody>
             @foreach($invoices as $invoice)
                 <tr>
-                    <td>{{$invoice->customers->name}}</td>
+                    <td>{{ ucfirst($invoice->customers->name) }}</td>
                     <td>{{ $invoice->invoice_number }}</td>
-                    <td>{{ $invoice->date }}</td>
-                    <td>{{ $invoice->due_date }}</td>
-                    <td>{{ $invoice->total_amoount }}</td>
-                    <td>{{ $invoice->status }}</td>
+                    <td>{{ \Carbon\Carbon::parse($invoice->date)->format('Y-F-d') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($invoice->due_date)->format('Y-F-d') }}</td>
+                    <td>{{ $invoice->total_amount }}</td>
+                    <td>
+                        @if($invoice->status != 'paid')
+                            <p style="color:red;">{{ $invoice->status }}</p>
+                            
+                        @else
+                            {{ $invoice->status }}💵✔️
+                        @endif
+                    </td>
                     <td>{{ $invoice->notes }}</td>
                     <td>
-                        <!-- Action Buttons (e.g. Edit, Delete) -->
-                       
-                        <button class="btn-action">Edit</button>
+                        <a href="{{ route('invoice.edit', encrypt($invoice->id)) }}" class="btn btn-outline-primary btn-sm">Edit</a>
+                   
+    
                     </td>
                 </tr>
             @endforeach

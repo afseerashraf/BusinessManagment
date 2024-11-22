@@ -76,12 +76,14 @@
             color: #000; 
             background-color: #fff; 
             transition: background-color 0.3s, color 0.3s; 
+            
         }
 
 
         .dropdown .dropdown-menu .dropdown-item:hover {
             background-color: #3b82f6; /* Light blue background on hover */
             color: #fff; /* White text on hover */
+           
         }       
 
         /* Main Content */
@@ -137,6 +139,7 @@
     </nav>
        
     <!-- Sidebar -->
+     @if(auth()->guard('web')->user() && auth()->guard('web')->user()->can('Manage all business transactions'))
     <div class="sidebar">
         
         <a href="{{ route('user.profile') }}">profile</a>
@@ -162,7 +165,7 @@
         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Vendor</a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('vendor.index') }}">Register Vendor</a></li>
-            <li><a class="dropdown-item" href="#">View Vendor</a></li>
+            <li><a class="dropdown-item" href="{{ route('vendor.vendors') }}">View Vendor</a></li>
         </ul>
     </div>
       
@@ -172,10 +175,10 @@
         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Expense</a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('expense.index') }}">register Expense</a></li>
-            <li><a class="dropdown-item" href="#">View Expence Detiles</a></li>
+            <li><a class="dropdown-item" href="{{ route('expense.expenses') }}">View Expence Detiles</a></li>
         </ul>
     </div>
-
+   
         
 
     <div class="dropdown">
@@ -190,7 +193,7 @@
         
        
     </div>
-
+   
     <!-- Main Content -->
     <div class="content">
         <div class="container-fluid">
@@ -201,11 +204,11 @@
             </div>
         </div>
     </div>
-
+    
     <footer>
         <p>&copy; 2024 Business Management. All Rights Reserved.</p>
     </footer>
-
+    @endif
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>

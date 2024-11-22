@@ -1,6 +1,6 @@
 @extends('layout.dashboard')
 
-@section('title', 'Active Customers')
+@section('title', 'Expenses')
 
 @section('content')
 
@@ -79,39 +79,38 @@
         background-color: #155ab7;
     }
 </style>
-
-    @if(session()->has('update'))
-    <p>{{ Session::get('update') }}</p>
-    @endif
-
-    @if(session()->has('delete'))
-    <p>{{ Session::get('delete')}}</p>
-    @endif
 <div class="container">
-    <h3>Active Customers</h3>
+    <h3>Expenses Detiles</h3>
+    @if(Session::has('updated'))
+        <p>{{ Session::get('updated') }}</p>
+    @endif
     <table class="table">
         <thead>
             <tr>
-                <th>No</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Address</th>
+                <th>ID</th>
+                <th>Vendor</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Notes</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($customers as $customer)
+            @foreach($expenses as $expense)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ ucfirst($customer->name) }}</td>
-                    <td>{{ $customer->email }}</td>
-                    <td>{{ $customer->phone }}</td>
-                    <td>{{ $customer->address }}</td>
+                    <td>{{ $expense->vendors->name }}</td>
+                    <td>{{ $expense->description }}</td>
+                    <td>{{ $expense->amount }}</td>
+                    <td>{{ $expense->date }}</td>
+                    <td>{{ $expense->category }}</td>
+                    <td>{{ $expense->notes }}</td>
                     <td>
-                    <a href="{{ route('customer.edit', encrypt($customer->id)) }}" class="btn btn-outline-primary btn-sm">Edit</a>
-                   <a href="{{ route('customer.delete', encrypt($customer->id)) }}" class="btn btn-outline-danger btn-sm">Remove</a>
-                </td>
+                        <a href="{{ route('expense.edit', encrypt($expense->id)) }}" class="btn btn-outline-primary btn-sm">Edit</a>
+                    
+                    </td>
                 </tr>
             @endforeach
         </tbody>

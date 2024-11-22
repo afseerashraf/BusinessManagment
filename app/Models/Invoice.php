@@ -3,11 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Invoice extends Model
 {
-    protected $guarded = [];
+    use Notifiable;
 
+    
+    protected $guarded = [];
+    protected $table = 'invoices';
     public function customers(){
         return $this->belongsTo(Customer::class, 'customer_id', 'id');
     }

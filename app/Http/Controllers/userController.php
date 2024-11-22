@@ -47,5 +47,5 @@ class userController extends Controller
         auth()->guard('web')->logout();
         return redirect()->route('user.login');
     }
-    }
+}
 
