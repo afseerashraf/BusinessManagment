@@ -1,6 +1,6 @@
 @extends('layout.dashboard')
 
-@section('title', 'Active Customers')
+@section('title', 'Invoice Dtiles')
 
 @section('content')
 
@@ -81,7 +81,7 @@
 </style>
 
 <div class="container">
-    <h3>Active Customers</h3>
+    <h3>Invoice Detiles</h3>
     <table class="table table-dark table-striped">
         <thead>
             <tr>
@@ -108,14 +108,13 @@
                             <p style="color:red;">{{ $invoice->status }}</p>
                             
                         @else
-                            {{ $invoice->status }}💵✔️
+                           {{ $invoice->status }}💵✔️
                         @endif
                     </td>
                     <td>{{ $invoice->notes }}</td>
                     <td>
                         <a href="{{ route('invoice.edit', encrypt($invoice->id)) }}" class="btn btn-outline-primary btn-sm">Edit</a>
-                   
-    
+                        <a href="{{ route('invoice.delete', encrypt($invoice->id)) }}" class="btn btn-outline-danger btn-sm">Delete</a>
                     </td>
                 </tr>
             @endforeach

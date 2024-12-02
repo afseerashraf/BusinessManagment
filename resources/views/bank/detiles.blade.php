@@ -1,6 +1,6 @@
 @extends('layout.dashboard')
 
-@section('title', 'Active Customers')
+@section('title', 'Bank Detiles')
 
 @section('content')
 
@@ -80,47 +80,36 @@
     }
 </style>
 
-    @if(session()->has('update'))
-    <p>{{ Session::get('update') }}</p>
-    @endif
-
-    @if(session()->has('delete'))
-    <p>{{ Session::get('delete')}}</p>
-    @endif
-
-    @if(session()->has('created'))
-        <p>{{ Session::get('created') }}</p>
-    @endif
 <div class="container">
-    <h3>Active Customers</h3>
-    <table class="table">
+    <h3>Bank Detiles</h3>
+    <table class="table table-dark table-striped">
         <thead>
             <tr>
-                <th>No</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Address</th>
+                <th>Account Name</th>
+                <th>Account Number</th>
+                <th>Bank Name</th>
+                <th>IFSC Code</th>
+                <th>Balance</th>
                 <th>Actions</th>
+            
             </tr>
         </thead>
         <tbody>
-            @foreach($customers as $customer)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ ucfirst($customer->name) }}</td>
-                    <td>{{ $customer->email }}</td>
-                    <td>{{ $customer->phone }}</td>
-                    <td>{{ $customer->address }}</td>
-                    <td>
-                    <a href="{{ route('customer.edit', encrypt($customer->id)) }}" class="btn btn-outline-primary btn-sm">Edit</a>
-                   <a href="{{ route('customer.delete', encrypt($customer->id)) }}" class="btn btn-outline-danger btn-sm">Remove</a>
+          @foreach($bankDetiles as $bankdetile)
+            <tr>
+                <td>{{ $bankdetile->account_name }}</td>
+                <td>{{ $bankdetile->account_number }}</td>
+                <td>{{ $bankdetile->bank_name }}</td>
+                <td>{{ $bankdetile->ifsc_code }}</td>
+                <td>{{ $bankdetile->balance }}</td>
+                <td>
+                    <a href="{{ route('bank.edit', encrypt($bankdetile->id)) }}" class="btn btn-outline-primary btn-sm">Edit</a>
+                    <a href="{{ route('bank.delete', encrypt($bankdetile->id)) }}" class="btn btn-outline-danger btn-sm">Remove</a>
                 </td>
-                </tr>
-            @endforeach
+            </tr>
+          @endforeach
         </tbody>
     </table>
-   
 </div>
 
 @endsection

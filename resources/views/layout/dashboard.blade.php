@@ -185,7 +185,7 @@
         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Bank</a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('bank.index') }}">Register Bank Detiles</a></li>
-            <li><a class="dropdown-item" href="#">View Bank Detiles</a></li>
+            <li><a class="dropdown-item" href="{{ route('bank.detiles') }}">View Bank Detiles</a></li>
         </ul>
     </div>
         <a href="#">Settings</a>

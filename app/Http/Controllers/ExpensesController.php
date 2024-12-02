@@ -57,4 +57,12 @@ class ExpensesController extends Controller
        
         return redirect()->route('expense.expenses')->with('update', $expense->id." updated");
     }
+
+    public function delete($id){
+        $expenseID = Expense::find(Crypt::decrypt($id));
+        $expenseID->delete();
+        
+        toastr()->success('successfully Deleted!');
+        return redirect()->route('expense.expenses');
+    }
 }

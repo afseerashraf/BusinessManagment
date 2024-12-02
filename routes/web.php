@@ -44,7 +44,9 @@ Route::middleware('auth')->group(function () {
             Route::get('invoices', 'outstandingInvoice')->name('outstandingInvoice');
             Route::get('edit/{id}', 'edit')->name('edit');
             Route::post('updated', 'updated')->name('updated');
-            Route::get('overdue', 'overDueInvolice');
+            Route::get('upcomingduedate', 'upcomingDueDateCustomers');
+            Route::get('overdue', 'overDueInvolice')->name('overDue');
+            Route::get('delete/{id}', 'delete')->name('delete');
         });
     });
 
@@ -66,6 +68,7 @@ Route::middleware('auth')->group(function () {
             Route::get('expenses', 'expenses')->name('expenses');
             Route::get('edit/{id}', 'edit')->name('edit');
             Route::post('updated', 'updated')->name('updated');
+            Route::get('delete/{id}', 'delete')->name('delete');
         });
     });
 
@@ -73,6 +76,17 @@ Route::middleware('auth')->group(function () {
         Route::controller(BankController::class)->group(function () {
             Route::view('/', 'bank.register')->name('index');
             Route::post('register', 'register')->name('register');
+            Route::get('detiles', 'bankDetiles')->name('detiles');
+            Route::get('edit/{id}', 'edit')->name('edit');
+            Route::post('updated', 'updated')->name('updated');
+            Route::get('delete/{id}', 'deleted')->name('delete');
         });
     });
+});
+
+Route::get('upcoming', function(){
+    return view('invoice.upcoming_duedate');
+});
+Route::get('overdue', function(){
+    return view('invoice.overDueInvoice');
 });

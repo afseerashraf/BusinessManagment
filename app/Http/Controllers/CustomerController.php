@@ -6,17 +6,26 @@ use Illuminate\Http\Request;
 use App\Http\Requests\customer\customerRegister;
 use App\Http\Requests\customer\editRequest;
 use App\Models\Customer;
+use App\Observers\CustomerCreate;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Validation\ValidationException;
+
 
 class CustomerController extends Controller
 {
     public function register(customerRegister $request){
         $customer = new Customer();
-        $customer->name = $request->name;
-        $customer->email = $request->email;
-        $customer->phone = $request->phone;
-        $customer->address = $request->address;
-        $customer->save();
+        $customer->create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+        ]);
+
+        toastr()->success('successfully Created New Customer');
+
+        return redirect()->route('customer.customers');
     }
 
 
@@ -41,13 +50,18 @@ class CustomerController extends Controller
             'address' => $request->address,
         ]);
         $customer->save();
-        return redirect()->route('customer.customers')->with('update', 'successfully updated '.$customer->name);
+      
+        toastr()->success('Data has been updated successfully!');
+        return redirect()->route('customer.customers');
     }
 
     public function delete($id){
         $customer = Customer::find(Crypt::decrypt($id));
         $customer->delete();
-        return redirect()->route('customer.customers')->with('delete', 'successfully deleted '.$customer->name);
+        toastr()->success($customer->name.' successfully Deleted!');
+
+        return redirect()->route('customer.customers');
+
     }
 
    

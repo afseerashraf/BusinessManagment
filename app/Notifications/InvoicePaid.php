@@ -15,10 +15,10 @@ class InvoicePaid extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public $invoices;
-    public function __construct($invoices)
+    public $invoice;
+    public function __construct($invoice)
     {
-        $this->invoices = $invoices;
+        $this->invoice = $invoice;
     }
 
     /**
@@ -36,16 +36,15 @@ class InvoicePaid extends Notification implements ShouldQueue
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $url = url('/invoice/'.$this->invoices->id);
 
         return (new MailMessage)
-                    ->line("you'r payment due date is over")
-                    ->line("Your invoice (ID: {$this->invoices->invoice_number}) payment is overdue.")
-                    ->action('View Invoice', $url)
-                    ->line("Due Date: " . Carbon::parse($this->invoices->due_date)->format('Y-m-d'))
-                    ->line("Amount Due: {$this->invoices->total_amount}")
-                    ->line('Thank you for using our application!');
+        ->greeting('Hello!'. $this->invoice->customers->name)
+        ->line('Your due date '.$this->invoice->due_date.' is over')
+        ->action('Check it out', url('/'))
+        ->line('Best regards!');
+      
     }
+      
 
     /**
      * Get the array representation of the notification.
@@ -55,9 +54,7 @@ class InvoicePaid extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
-            'invoice_number' => $this->invoices->invoice_number,
-            'amount_due' => $this->invoices->total_amount,
-            'due_date' => $this->invoices->due_date,
+           
         ];
     }
 }

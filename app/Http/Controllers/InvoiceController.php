@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\InvoicePaid;
+use App\Events\UpcomingInvoiceDuedate;
+use App\Events\overDueEvent;
 class InvoiceController extends Controller
 {
     public function index() {
@@ -59,14 +61,50 @@ class InvoiceController extends Controller
         $invoice->save();
         return redirect()->route('invoice.outstandingInvoice');
     }
+
+    public function delete($id){
+        $invoiceID = Invoice::find(Crypt::decrypt($id));
+        $invoiceID->delete();
+
+        toastr()->success('Deleted sucess fully '.$invoiceID->invoice_number );
+        return redirect()->route('invoice.outstandingInvoice');
+
+    }
+
+
     public function overDueInvolice(){
-       $overDue = Carbon::yesterday();
         
-       $invoices = Invoice::where('due_date', '=',  $overDue)->where('status', '!=', 'paid')->first();
-        if($invoices){
-            
-            $invoices->notify(new InvoicePaid($invoices));
+        $overDue = Carbon::yesterday();
+        
+        $invoices = Invoice::where('due_date', '=',  $overDue)->where('status', '!=', 'paid')->get();
+       foreach($invoices as $invoice){
+        if($invoice && $invoice->customers){
+           
+            //Notification::send($invoice->customers, new InvoicePaid($invoice));
+            overDueEvent::dispatch($invoice);
+            toastr()->warning('The upcoming invoice '.$invoice->customers->name);
+
+            return view('invoice.overDueInvoice');
+
         }
+       } 
+      
+    }
+
+     public function upcomingDueDateCustomers(){
+        $upcoming = Carbon::tomorrow();
+        $upcomingInvoices = Invoice::where('due_date', '=', $upcoming)->where('status', '!=', 'paid')->get();
+
+            foreach($upcomingInvoices as $upcominginvoice){
+            if($upcominginvoice->customers){
+                UpcomingInvoiceDuedate::dispatch($upcominginvoice);
+                toastr()->warning('The upcoming invoice '.$upcominginvoice->customers->name);
+
+               return view('invoice.upcoming_duedate');
+            }
+        }
+        
+
     }
        
 }

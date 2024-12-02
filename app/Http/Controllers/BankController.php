@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\bank\bankRequest;
+use App\Http\Requests\bank\EditRequest;
 use App\Models\Bank;
+use Illuminate\Support\Facades\Crypt;
+
 class BankController extends Controller
 {
     public function register(bankRequest $request){
@@ -15,5 +18,43 @@ class BankController extends Controller
         $bank->ifsc_code = $request->ifsc_code;
         $bank->balance = $request->balance;
         $bank->save();
+
+        toastr()->success('successfully recorded bank detiles');
+        return redirect()->route('bank.detiles');
+    }
+
+
+    public function bankDetiles(){
+        $bankDetiles = Bank::all();
+        return view('bank.detiles',compact('bankDetiles'));
+    }
+
+    public function edit($id){
+        $bankAc = Bank::find(Crypt::decrypt($id));
+        return view('bank.edit', compact('bankAc'));
+    }
+
+    public function updated(EditRequest $request){
+        $bankId = Bank::find(Crypt::decrypt($request->id));
+        
+       
+        $bankId->update([
+            'account_name' => $request->account_name,
+            'account_number' => $request->account_number,
+            'bankName' => $request->bankName,
+            'ifsc_code' => $request->ifsc_code,
+            'balance' => $request->balance,
+        ]);
+       
+        toastr()->success('successfully Updated Bank Detiles');
+        return redirect()->route('bank.detiles');
+
+    }
+    public function deleted($id){
+        $bankId = Bank::find(Crypt::decrypt($id));
+        $bankId->delete();
+        toastr()->success('successfully Deleted '.$bankId->account_name);
+        return redirect()->route('bank.detiles');
+
     }
 }

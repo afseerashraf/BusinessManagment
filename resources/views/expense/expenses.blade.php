@@ -109,7 +109,7 @@
                     <td>{{ $expense->notes }}</td>
                     <td>
                         <a href="{{ route('expense.edit', encrypt($expense->id)) }}" class="btn btn-outline-primary btn-sm">Edit</a>
-                    
+                        <a href="{{ route('expense.delete', encrypt($expense->id))}}" class="btn btn-outline-danger btn-sm">Delete</a>
                     </td>
                 </tr>
             @endforeach
