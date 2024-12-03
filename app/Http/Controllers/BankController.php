@@ -41,10 +41,11 @@ class BankController extends Controller
         $bankId->update([
             'account_name' => $request->account_name,
             'account_number' => $request->account_number,
-            'bankName' => $request->bankName,
+            'bank_name' => $request->bankName,
             'ifsc_code' => $request->ifsc_code,
             'balance' => $request->balance,
         ]);
+        $bankId->save();
        
         toastr()->success('successfully Updated Bank Detiles');
         return redirect()->route('bank.detiles');
@@ -56,5 +57,16 @@ class BankController extends Controller
         toastr()->success('successfully Deleted '.$bankId->account_name);
         return redirect()->route('bank.detiles');
 
+    }
+
+    public function lowBalanceAlert(){
+        $bankAlerts = Bank::where('balance', '<', 1000)->get();
+
+        foreach($bankAlerts as $bankAlert){
+            toastr()->success($bankAlert->account_name.' Balance is low!');
+
+            return redirect()->route('bank.detiles');
+        }
+        
     }
 }

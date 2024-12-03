@@ -19,6 +19,10 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::post('logined', 'login')->name('dologin');
         Route::view('profile', 'user.profile')->name('profile');
         Route::get('logout/{id}', 'logout')->name('logout');
+        Route::get('forgot', 'requestResetPasswordMail')->name('requestResetPasswordMail');
+        Route::post('forgotmail', 'resetPasswordMail')->name('resetPasswordMail');
+        Route::get('viewResetForm/{token}', 'viewResetForm')->name('viewResetPassword');
+        Route::post('resetedPassword', 'resetedPassword')->name('resetedPassword');
     });
 });
 
@@ -80,13 +84,9 @@ Route::middleware('auth')->group(function () {
             Route::get('edit/{id}', 'edit')->name('edit');
             Route::post('updated', 'updated')->name('updated');
             Route::get('delete/{id}', 'deleted')->name('delete');
+            Route::get('lowbalance', 'lowBalanceAlert')->name('lowBalanceAlert');
         });
     });
 });
 
-Route::get('upcoming', function(){
-    return view('invoice.upcoming_duedate');
-});
-Route::get('overdue', function(){
-    return view('invoice.overDueInvoice');
-});
+

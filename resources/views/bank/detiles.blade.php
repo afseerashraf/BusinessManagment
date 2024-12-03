@@ -82,6 +82,7 @@
 
 <div class="container">
     <h3>Bank Detiles</h3>
+    <a href="{{ route('bank.lowBalanceAlert') }}" class="btn btn-outline-primary btn-sm">Find The Lower Budget</a>
     <table class="table table-dark table-striped">
         <thead>
             <tr>

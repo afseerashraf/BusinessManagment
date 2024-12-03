@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\bank;
+namespace App\Http\Requests\user;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditRequest extends FormRequest
+class resetPasswordMail extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +22,8 @@ class EditRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'account_name' => ['required', 'regex:/^[a-zA-Z0-9\s,.\n-]+$/'],
-            'account_number' => ['required', 'numeric'],
-            'bankName' => ['required', 'regex:/^[a-zA-Z\s]+$/'],
-            'ifsc_code' => ['required', 'regex:/^[a-zA-Z0-9\s,.\n-]+$/'],
-            'balance' => ['required', 'numeric'],
+            'email' => ['required', 'email'],
+
         ];
     }
 }
