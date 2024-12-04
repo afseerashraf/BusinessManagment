@@ -1,5 +1,5 @@
 @extends('layout.dashboard')
-@section('title')user Profile @endsection
+@section('title')Admin Profile @endsection
 
 <style>
     .container {
@@ -43,7 +43,7 @@
 @section('content')
 
 <div class="container">
-    <h3>User Details</h3>
+    <h3>Admin Details</h3>
     <ul>
         <li><strong>Name:</strong> {{ ucfirst(session('user')->name) }}</li>
         <li><strong>Email:</strong> {{ session('user')->email }}</li>

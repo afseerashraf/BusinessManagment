@@ -7,12 +7,13 @@
 <style>
     .login-container {
         padding-top: 50px;
-        background-color: #f2e7e5;
+        background-color: #2e3033;
         box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
         width: 100%;
         max-width: 500px;
         margin: 0 auto;
+        color: #fafcff;
     }
 
     .login-container h3 {
@@ -22,6 +23,7 @@
 
     .login-container form {
         padding: 20px;
+       
     }
 
     .login-container a {

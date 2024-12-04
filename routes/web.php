@@ -48,9 +48,10 @@ Route::middleware('auth')->group(function () {
             Route::get('invoices', 'outstandingInvoice')->name('outstandingInvoice');
             Route::get('edit/{id}', 'edit')->name('edit');
             Route::post('updated', 'updated')->name('updated');
-            Route::get('upcomingduedate', 'upcomingDueDateCustomers');
+            Route::get('upcomingduedate', 'upcomingDueDateCustomers')->name('upcoming_duedate');
             Route::get('overdue', 'overDueInvolice')->name('overDue');
             Route::get('delete/{id}', 'delete')->name('delete');
+            Route::get('download/{id}', 'download')->name('download');
         });
     });
 

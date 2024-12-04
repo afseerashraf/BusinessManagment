@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Notification;
 use App\Notifications\InvoicePaid;
 use App\Events\UpcomingInvoiceDuedate;
 use App\Events\overDueEvent;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class InvoiceController extends Controller
 {
@@ -109,4 +110,17 @@ class InvoiceController extends Controller
             }
         }
     }
+
+
+    public function download($id) {
+        $invoiceCustomer = Invoice::find(Crypt::decrypt($id));
+    
+        if (!$invoiceCustomer) {
+            return redirect()->route('invoice.outstandingInvoice');
+        }
+        $pdf = PDF::loadView('invoice.invoicePDF', compact('invoiceCustomer')); 
+        $pdfPath = storage_path('app/public/invociePDF' . 'invoice_'. $invoiceCustomer->id .'.pdf');
+        $pdf->save($pdfPath);
+    }
+    
 }

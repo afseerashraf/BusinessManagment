@@ -115,6 +115,7 @@
                     <td>
                         <a href="{{ route('invoice.edit', encrypt($invoice->id)) }}" class="btn btn-outline-primary btn-sm">Edit</a>
                         <a href="{{ route('invoice.delete', encrypt($invoice->id)) }}" class="btn btn-outline-danger btn-sm">Delete</a>
+                        <a href="{{ route('invoice.download', encrypt($invoice->id)) }}" class="btn btn-outline-success btn-sm">Download</a>
                     </td>
                 </tr>
             @endforeach
