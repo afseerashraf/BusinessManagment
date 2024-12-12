@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Flasher\Laravel\Http\Request;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\RateLimiter;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+
+            
+        
+
     }
 }

@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Validation\ValidationException;
 
-
 class CustomerController extends Controller
 {
     public function register(customerRegister $request){

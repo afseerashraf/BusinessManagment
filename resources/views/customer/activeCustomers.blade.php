@@ -108,7 +108,7 @@
             @foreach($customers as $customer)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ ucfirst($customer->name) }}</td>
+                    <td>{{ $customer->name }}</td>
                     <td>{{ $customer->email }}</td>
                     <td>{{ $customer->phone }}</td>
                     <td>{{ $customer->address }}</td>
@@ -119,8 +119,11 @@
                 </tr>
             @endforeach
         </tbody>
+      
+
+
     </table>
-   
+    
 </div>
 
 @endsection

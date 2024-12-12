@@ -41,7 +41,7 @@ class InvoiceDownload extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.invoice.Mail.MailPDF',
+            view: 'invoice.Mail.MailPDF',
         );
     }
 

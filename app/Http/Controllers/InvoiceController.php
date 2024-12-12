@@ -14,7 +14,7 @@ use App\Notifications\InvoicePaid;
 use App\Events\UpcomingInvoiceDuedate;
 use App\Events\overDueEvent;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
-
+use App\Jobs\InvoiceDownloadMail;
 class InvoiceController extends Controller
 {
     public function index()
@@ -114,13 +114,18 @@ class InvoiceController extends Controller
 
     public function download($id) {
         $invoiceCustomer = Invoice::find(Crypt::decrypt($id));
-    
-        if (!$invoiceCustomer) {
+        if(!$invoiceCustomer->customers){
+            toastr()->warning('Does not find the customer');
+
             return redirect()->route('invoice.outstandingInvoice');
         }
-        $pdf = PDF::loadView('invoice.invoicePDF', compact('invoiceCustomer')); 
-        $pdfPath = storage_path('app/public/invociePDF' . 'invoice_'. $invoiceCustomer->id .'.pdf');
-        $pdf->save($pdfPath);
+        $pdf = PDF::loadView('invoice.invoicePDF', compact('invoiceCustomer'));
+        $pdfpath = storage_path('app/public/invoicePDF/'. 'invoice_'. $invoiceCustomer->id.'.pdf');
+        $pdf->save($pdfpath);
+        InvoiceDownloadMail::dispatch($invoiceCustomer, $pdfpath);
+        toastr()->success('Send the pdf in to mail'. $invoiceCustomer->customers->name);
+        return response()->download($pdfpath);
     }
+    
     
 }

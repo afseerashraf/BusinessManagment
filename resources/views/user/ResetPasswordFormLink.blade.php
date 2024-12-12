@@ -10,7 +10,7 @@
 <body>
     <h2>Hellow {{ $user->name }}</h2>
     <p>Click to reset you'r password!</p>
-    <a href="{{ route('viewResetPassword', ['token' => $token ]) }}">Reset</a>
+    <a href="{{ route('user.viewResetPassword', ['token' => $token ]) }}">Reset Password</a>
 
 
 

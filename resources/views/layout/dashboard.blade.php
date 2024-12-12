@@ -16,6 +16,30 @@
             background-color: #121212;
             color: #e0e0e0;
         }
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        body.light-mode .navbar {
+            background-color: #f8f9fa;
+            color: #121212;
+        }
+        .btn-toggle-mode {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            border: none;
+            background-color: #3b82f6;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        .btn-toggle-mode:hover {
+            background-color: #2563eb;
+        }
 
         .navbar {
             background-color: #1f1f1f;
@@ -69,22 +93,26 @@
         }
 
         .sidebar a:hover {
-            background-color: #3b82f6; /* Light blue hover effect */
+            background-color: #3b82f6;
+            /* Light blue hover effect */
             color: #121212;
         }
+
         .dropdown .dropdown-menu .dropdown-item {
-            color: #000; 
-            background-color: #fff; 
-            transition: background-color 0.3s, color 0.3s; 
-            
+            color: #000;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+
         }
 
 
         .dropdown .dropdown-menu .dropdown-item:hover {
-            background-color: #3b82f6; /* Light blue background on hover */
-            color: #fff; /* White text on hover */
-           
-        }       
+            background-color: #3b82f6;
+            /* Light blue background on hover */
+            color: #fff;
+            /* White text on hover */
+
+        }
 
         /* Main Content */
         .content {
@@ -115,6 +143,11 @@
             text-align: center;
             color: #888;
         }
+
+        #canvas-wrapper.dark-mode {
+            background: #222;
+            color: #DDD;
+        }
     </style>
 </head>
 
@@ -137,63 +170,63 @@
             </div>
         </div>
     </nav>
-       
+
     <!-- Sidebar -->
-     @if(auth()->guard('web')->user() && auth()->guard('web')->user()->can('Manage all business transactions'))
+    @if(auth()->guard('web')->user() && auth()->guard('web')->user()->can('Manage all business transactions'))
     <div class="sidebar">
-        
+
         <a href="{{ route('user.profile') }}">profile</a>
-    <div class="dropdown">
-        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Customer Information</a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ route('customer.index') }}">Register Customer</a></li>
-            <li><a class="dropdown-item" href="{{ route('customer.customers') }}">View Customer</a></li>
-        </ul>
-    </div>
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Customer Information</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ route('customer.index') }}">Register Customer</a></li>
+                <li><a class="dropdown-item" href="{{ route('customer.customers') }}">View Customer</a></li>
+            </ul>
+        </div>
 
 
-    <div class="dropdown">
-        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Invoice</a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ route('invoice.index') }}">Register Invoice</a></li>
-            <li><a class="dropdown-item" href="{{ route('invoice.outstandingInvoice') }}">View Invoice</a></li>
-        </ul>
-    </div>
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Invoice</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ route('invoice.index') }}">Register Invoice</a></li>
+                <li><a class="dropdown-item" href="{{ route('invoice.outstandingInvoice') }}">View Invoice</a></li>
+            </ul>
+        </div>
 
 
-    <div class="dropdown">
-        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Vendor</a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ route('vendor.index') }}">Register Vendor</a></li>
-            <li><a class="dropdown-item" href="{{ route('vendor.vendors') }}">View Vendor</a></li>
-        </ul>
-    </div>
-      
-       
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Vendor</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ route('vendor.index') }}">Register Vendor</a></li>
+                <li><a class="dropdown-item" href="{{ route('vendor.vendors') }}">View Vendor</a></li>
+            </ul>
+        </div>
 
-    <div class="dropdown">
-        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Expense</a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ route('expense.index') }}">register Expense</a></li>
-            <li><a class="dropdown-item" href="{{ route('expense.expenses') }}">View Expence Detiles</a></li>
-        </ul>
-    </div>
-   
-        
 
-    <div class="dropdown">
-        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Bank</a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ route('bank.index') }}">Register Bank Detiles</a></li>
-            <li><a class="dropdown-item" href="{{ route('bank.detiles') }}">View Bank Detiles</a></li>
-        </ul>
-    </div>
+
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Expense</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ route('expense.index') }}">register Expense</a></li>
+                <li><a class="dropdown-item" href="{{ route('expense.expenses') }}">View Expence Detiles</a></li>
+            </ul>
+        </div>
+
+
+
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Bank</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ route('bank.index') }}">Register Bank Detiles</a></li>
+                <li><a class="dropdown-item" href="{{ route('bank.detiles') }}">View Bank Detiles</a></li>
+            </ul>
+        </div>
         <a href="#">Settings</a>
-        
-        
-       
+
+
+
     </div>
-   
+
     <!-- Main Content -->
     <div class="content">
         <div class="container-fluid">
@@ -204,13 +237,19 @@
             </div>
         </div>
     </div>
-    
+
     <footer>
         <p>&copy; 2024 Business Management. All Rights Reserved.</p>
     </footer>
     @endif
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        
+      });
+    </script>
 </body>
 
 </html>

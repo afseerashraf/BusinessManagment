@@ -62,7 +62,7 @@
 <body>
     <div class="container">
         <h3>Reset Password</h3>
-        <form action="{{ route('resetedPassword') }}" method="post">
+        <form action="{{ route('user.resetedPassword') }}" method="post">
             @csrf
             <input type="hidden" name="user_id" value="{{encrypt($user->id)}}">
             <label for="password">Password</label>

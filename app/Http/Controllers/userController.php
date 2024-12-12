@@ -59,12 +59,11 @@ class userController extends Controller
 
     public function resetPasswordMail(resetPasswordMail $request){
         $user = User::where('email', $request->email)->first();
-
+        
         if($user){
             $token = str::random(64);
             $user->password_reset_token = $token;
             $user->save();
-    
             Mail::to($user->email)->send(new ReserPassword($user, $token));
             return redirect()->back()->with('message', 'Password reset link sent to your email!');
 
@@ -75,14 +74,16 @@ class userController extends Controller
     }
 
     public function viewResetForm($token){
-        $user = User::where('remember_token', $token)->first();
+        $user = User::where('password_reset_token', $token)->first();
+      
         if($user){
             $user->password_reset_token = 'null';
             $user->save();
-            return view('user.resetPassword',compact('user'));
+            return view('user.resetPassword ',compact('user'));
         } else {
             return redirect()->route('user.login');
         }
+        
     }
 
     public function resetedPassword(Request $request){
@@ -96,7 +97,9 @@ class userController extends Controller
             $user->update([
                 'password' => $request->password,
             ]);
-            return redirect()->route('user.login')->with('message', 'successfully reset password');
+            toastr()->success('successfully reseted password!');
+
+            return redirect()->route('user.login');
 
         }else{
             return redirect()->route('forgotmailSend');

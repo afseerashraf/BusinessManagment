@@ -34,6 +34,8 @@ class overDueEvent  implements ShouldBroadcast
             new PrivateChannel('my-channel'),
         ];
     }
+
+    
     public function broadcastAs(): string
     {
         return 'overDue_invoice';

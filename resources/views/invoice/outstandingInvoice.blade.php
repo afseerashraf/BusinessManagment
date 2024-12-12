@@ -7,10 +7,10 @@
 <style>
     /* General Styles */
     body {
-            font-family: 'Arial', sans-serif;
-            background-color: #121212;
-            color: #e0e0e0;
-        }
+        font-family: 'Arial', sans-serif;
+        background-color: #121212;
+        color: #e0e0e0;
+    }
 
     .container {
         margin-top: 30px;
@@ -32,7 +32,8 @@
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-    .table th, .table td {
+    .table th,
+    .table td {
         padding: 15px;
         text-align: left;
         font-size: 16px;
@@ -56,7 +57,9 @@
 
     /* Responsive Design */
     @media (max-width: 768px) {
-        .table th, .table td {
+
+        .table th,
+        .table td {
             padding: 10px;
             font-size: 14px;
         }
@@ -66,6 +69,7 @@
     .text-muted {
         color: #888;
     }
+
     .btn-action {
         background-color: #1f6feb;
         color: white;
@@ -97,27 +101,28 @@
         </thead>
         <tbody>
             @foreach($invoices as $invoice)
-                <tr>
-                    <td>{{ ucfirst($invoice->customers->name) }}</td>
-                    <td>{{ $invoice->invoice_number }}</td>
-                    <td>{{ \Carbon\Carbon::parse($invoice->date)->format('Y-F-d') }}</td>
-                    <td>{{ \Carbon\Carbon::parse($invoice->due_date)->format('Y-F-d') }}</td>
-                    <td>{{ $invoice->total_amount }}</td>
-                    <td>
-                        @if($invoice->status != 'paid')
-                            <p style="color:red;">{{ $invoice->status }}</p>
-                            
-                        @else
-                           {{ $invoice->status }}💵✔️
-                        @endif
-                    </td>
-                    <td>{{ $invoice->notes }}</td>
-                    <td>
-                        <a href="{{ route('invoice.edit', encrypt($invoice->id)) }}" class="btn btn-outline-primary btn-sm">Edit</a>
-                        <a href="{{ route('invoice.delete', encrypt($invoice->id)) }}" class="btn btn-outline-danger btn-sm">Delete</a>
-                        <a href="{{ route('invoice.download', encrypt($invoice->id)) }}" class="btn btn-outline-success btn-sm">Download</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>{{ $invoice->customers->name }}</td>
+                <td>{{ $invoice->invoice_number }}</td>
+                <td>{{ \Carbon\Carbon::parse($invoice->date)->format('Y-F-d') }}</td>
+                <td>{{ \Carbon\Carbon::parse($invoice->due_date)->format('Y-F-d') }}</td>
+                <td>{{ $invoice->total_amount }}</td>
+                <td>
+                    @if($invoice->status != 'paid')
+                        <p style="color:red;">{{ $invoice->status }}</p>
+
+                    @else
+                        {{ $invoice->status }}💵✔️
+                    @endif
+                </td>
+                <td>{{ $invoice->notes }}</td>
+                <td style="white-space: nowrap;">
+                    <a href="{{ route('invoice.edit', encrypt($invoice->id)) }}" class="btn btn-outline-primary btn-sm" style="margin-right: 5px;">Edit</a>
+                    <a href="{{ route('invoice.delete', encrypt($invoice->id)) }}" class="btn btn-outline-danger btn-sm" style="margin-right: 5px;">Delete</a>
+                    <a href="{{ route('invoice.download', encrypt($invoice->id)) }}" class="btn btn-outline-success btn-sm">Download</a>
+                </td>
+
+            </tr>
             @endforeach
         </tbody>
     </table>

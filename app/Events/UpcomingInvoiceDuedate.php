@@ -36,6 +36,8 @@ class UpcomingInvoiceDuedate implements ShouldBroadcast
         ];
     }
 
+
+    
     public function broadcastAs(): string
     {
         return 'upcoming_invoice';
