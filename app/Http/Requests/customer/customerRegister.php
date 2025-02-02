@@ -22,9 +22,9 @@ class customerRegister extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'regex:/^[a-zA-Z\s]+$/'],
+            'name' => ['required', 'regex:/^[a-zA-Z0-9\s]+$/'],
             'email' => ['required', 'email'],
-            'phone' =>['required', 'numeric',  'digits_between:10,12'],
+            'phone' => ['required', 'regex:/^\+?[0-9]{10,12}$/'],
             'address' => ['required', 'regex:/^[a-zA-Z0-9\s,.\n-]+$/'],
         ];
     }

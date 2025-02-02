@@ -36,8 +36,11 @@ Route::middleware('auth')->group(function () {
             Route::post('updated', 'updated')->name('updated');
             Route::get('delete/{id}', 'delete')->name('delete');
             Route::get('overdue', 'overDueCustomer')->name('overdue');
+            Route::get('create', 'create')->name('create');
+
         });
     });
+});
 
 
 
@@ -88,6 +91,5 @@ Route::middleware('auth')->group(function () {
             Route::get('lowbalance', 'lowBalanceAlert')->name('lowBalanceAlert');
         });
     });
-});
 
 

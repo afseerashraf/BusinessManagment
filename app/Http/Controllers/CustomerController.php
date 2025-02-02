@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Validation\ValidationException;
 
+
 class CustomerController extends Controller
 {
     public function register(customerRegister $request){
@@ -60,6 +61,16 @@ class CustomerController extends Controller
         toastr()->success($customer->name.' successfully Deleted!');
 
         return redirect()->route('customer.customers');
+
+    }
+
+    public function create()
+    {
+        //
+        $customer = Customer::findOrFail(1);
+        $customer->update([
+            'name' => 'snow freeze',
+        ]);
 
     }
 

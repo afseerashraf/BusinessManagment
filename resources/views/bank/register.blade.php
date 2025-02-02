@@ -59,7 +59,7 @@ Bank Detiles
                 <div class="col">
 
                     <label for="bank name" class="form-label">Bank Name</label>
-                    <input type="text" id="bankName" name="bankName" class="form-control" placeholder="Bank Name"></input>
+                    <input type="text" id="bankName" name="bankName" class="form-control" placeholder="Bank Name" value="{{ old('bankName') }}"></input>
                     @error('bankName') <div class="alert alert-danger">{{ $message }}</div> @enderror
                 </div>
 

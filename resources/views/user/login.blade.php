@@ -2,7 +2,6 @@
 
 @section('title', 'user Login')
 
-@section('content')
 
 <style>
     .login-container {
@@ -32,6 +31,8 @@
         text-align: center;
     }
 </style>
+@section('content')
+
 
 <div class="container">
     <div class="login-container">

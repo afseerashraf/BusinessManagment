@@ -63,7 +63,7 @@
                 <textarea id="address" name="address" class="form-control" rows="4" placeholder="Enter customer address city state postal country"></textarea>
                 @error('address') <div class="alert alert-danger">{{ $message }}</div> @enderror
             </div>
-
+            
             <div class="d-grid">
                 <button type="submit" class="btn btn-outline-primary">Register</button>
             </div>

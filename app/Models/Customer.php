@@ -17,6 +17,7 @@ class Customer extends Model
 
     protected $guarded = [];
 
+
     protected function name(): Attribute
     {
         return Attribute::make(

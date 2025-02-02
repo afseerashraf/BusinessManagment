@@ -22,7 +22,7 @@ class bankRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'account_name' => ['required', 'regex:/^[a-zA-Z0-9\s,.\n-]+$/'],
+            'account_name' => ['required'],
             'account_number' => ['required', 'numeric'],
             'bankName' => ['required', 'regex:/^[a-zA-Z\s]+$/'],
             'ifsc_code' => ['required', 'regex:/^[a-zA-Z0-9\s,.\n-]+$/'],

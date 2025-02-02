@@ -127,5 +127,6 @@ class InvoiceController extends Controller
         return response()->download($pdfpath);
     }
     
+  
     
 }
