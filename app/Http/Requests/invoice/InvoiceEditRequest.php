@@ -23,12 +23,12 @@ class InvoiceEditRequest extends FormRequest
     {
         return [
             'customer_id' => ['required', 'numeric'],
-            'name' =>['required', 'regex:/^[a-zA-Z\s]+$/'],
+            'name' => ['required', 'regex:/^[a-zA-Z\s]+$/'],
             'date' => ['required', 'date'],
             'due_date' => ['required', 'date'],
-            'total_amount' => ['required','numeric'],
-            'status' =>['required', 'regex:/^[a-zA-Z\s]+$/'],
-            'note' =>['nullable','regex:/^[a-zA-Z\s]+$/'],
+            'total_amount' => ['required', 'numeric'],
+            'status' => ['required', 'regex:/^[a-zA-Z\s]+$/'],
+            'note' => ['nullable', 'regex:/^[a-zA-Z\s]+$/'],
 
         ];
     }

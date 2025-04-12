@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Invoice;
+use Illuminate\Http\Request;
+
 class InvoiceController extends Controller
 {
-
     public function create(Request $request)
     {
-        $invoice = new Invoice();
+        $invoice = new Invoice;
         $invoice->customer_id = $request->customer_id;
         $invoice->invoice_number = $request->invoice_number;
         $invoice->date = $request->date;
@@ -20,9 +20,11 @@ class InvoiceController extends Controller
         $invoice->notes = $request->notes;
         $invoice->save();
     }
+
     public function invoces()
     {
         $invoices = Invoice::all();
+
         return $invoices;
     }
 }

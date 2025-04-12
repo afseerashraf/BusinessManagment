@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('account_number');
             $table->string('bank_name');
             $table->string('ifsc_code');
-            $table->decimal('balance', 10,2);
+            $table->decimal('balance', 10, 2);
             $table->timestamps();
         });
     }

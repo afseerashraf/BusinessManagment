@@ -2,9 +2,7 @@
 
 namespace App\Events;
 
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -18,6 +16,7 @@ class UpcomingInvoiceDuedate implements ShouldBroadcast
      * Create a new event instance.
      */
     public $upcominginvoice;
+
     public function __construct($upcominginvoice)
     {
         $this->upcominginvoice = $upcominginvoice;
@@ -36,10 +35,8 @@ class UpcomingInvoiceDuedate implements ShouldBroadcast
         ];
     }
 
-
-    
     public function broadcastAs(): string
     {
         return 'upcoming_invoice';
-    }   
+    }
 }

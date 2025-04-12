@@ -1,136 +1,152 @@
 @extends('layout.dashboard')
-@section('title')Invoice Register @endsection
+
+@section('title') Invoice Register @endsection
+
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
+    .form-container {
+        max-width: 700px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        color: #333;
     }
 
-    .container {
-        background-color: #f2f2f2;
-        width: 100%;
-        max-width: 600px;
-        margin: 50px auto;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        background-color: white;
-        color: black;
-    }
-
-    .container h3 {
+    .form-container h3 {
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
+        font-weight: 600;
+        color: #222;
     }
 
-    .container form {
-        display: flex;
-        flex-direction: column;
+    .form-label {
+        font-weight: 500;
+        margin-bottom: 6px;
+        display: block;
     }
 
-    label {
-        margin-bottom: 5px;
-    }
-
-    input,
-    select {
+    .form-control, select {
         width: 100%;
-        padding: 10px;
+        padding: 10px 14px;
         margin-bottom: 15px;
-        border-radius: 4px;
         border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        background-color: #f9f9f9;
     }
 
-    .btn {
-        background-color: #007bff;
+    select {
+        background-color: #fff;
+    }
+
+    .btn-submit {
+        background-color: #0d6efd;
         color: white;
-        padding: 10px;
+        padding: 12px;
         border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    .btn:hover {
-        background-color: #0056b3;
-    }
-
-    .banner {
         width: 100%;
-        height: 200px;
-        background-image: url('');
-        /* Example image URL */
-        background-size: cover;
-        background-position: center;
-        border-radius: 8px 8px 0 0;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .btn-submit:hover {
+        background-color: #084298;
     }
 
     .alert {
         color: red;
+        font-size: 14px;
+        margin-top: -10px;
         margin-bottom: 10px;
     }
-    #note{
+
+    .row {
+        display: flex;
+        gap: 20px;
+    }
+
+    .col {
+        flex: 1;
+    }
+
+    #note {
         height: 100px;
+        resize: vertical;
+    }
+
+    @media (max-width: 768px) {
+        .row {
+            flex-direction: column;
+        }
     }
 </style>
 
 @section('content')
 
-<div class="container">
- <h3>Invoice Detiles</h3>
- <form action="{{ route('invoice.register') }}" method="post">
-    @csrf 
+<div class="form-container">
+    <h3>Invoice Details</h3>
+    <form action="{{ route('invoice.register') }}" method="POST">
+        @csrf
 
-<div class="row">
-    <div class="col">
-    <label for="customer">Select customer</label>
-    <select name="customer_id" value="{{ old('customer_id') }}">
-    <option value="" selected>--Select Customer--</option>
-        @foreach($customers as $customer)
-        <option value="{{ $customer->id }}">{{ $customer->name }} ({{ $customer->address }})</option>
-        @endforeach
-    </select>
-    @error('customer_id') <div class="alert">{{ $message }}</div> @enderror
-    </div>
-<div class="col">
-    <label for="invoice_number">Invoice Number</label>
-    <input type="text" name="invoice_number" placeholder="invoice number"" value="{{ old('invoice_number') }}">
-    @error('invoice_number') <div class="alert">{{ $message }}</div> @enderror
-</div>
-</div>
+        <div class="row">
+            <div class="col">
+                <label for="customer_id" class="form-label">Select Customer</label>
+                <select name="customer_id" class="form-control">
+                    <option value="">-- Select Customer --</option>
+                    @foreach($customers as $customer)
+                        <option value="{{ $customer->id }}" {{ old('customer_id') == $customer->id ? 'selected' : '' }}>
+                            {{ $customer->name }} ({{ $customer->address }})
+                        </option>
+                    @endforeach
+                </select>
+                @error('customer_id') <div class="alert">{{ $message }}</div> @enderror
+            </div>
 
-<div class="row">
-    <div class="col">
-    <label for="date">Date</label>
-    <input type="date" name="date" value="{{ old('date') }}">
-    @error('date') <div class="alert">{{ $message }}</div> @enderror
-    </div>
-<div class="col">
-    <label for="duedate">Due Date</label>
-    <input type="date" name="duedate" value="{{ old('duedate') }}">
-    @error('duedate') <div class="alert">{{ $message }}</div> @enderror
-    </div>
-</div>
+            <div class="col">
+                <label for="invoice_number" class="form-label">Invoice Number</label>
+                <input type="text" name="invoice_number" class="form-control" placeholder="Invoice number" value="{{ old('invoice_number') }}">
+                @error('invoice_number') <div class="alert">{{ $message }}</div> @enderror
+            </div>
+        </div>
 
-<div class="row">
-    <div class="col">
-    <label for="totalamount">Total Amount</label>
-    <input type="text" class="form-controller" name="total_amount" placeholder="Enter amount" value="{{ old('total_amount') }}">
-    @error('total_amount') <p class="error-message">{{ $message }}</p> @enderror
-    </div>
-<div class="col">
-    <label for="name">Status</label>
-    <input type="text" name="status" placeholder="status" value="{{ old('satus') }}">
-    @error('status') <div class="alert">{{ $message }}</div> @enderror
-    </div>
-</div>
-  
-    <label for="note" class="form-label">Note</label>
-    <input type="text" id="note" name="note" class="form-control" rows="4" placeholder="Note" value="{{ old('note') }}"></input>
-    @error('note') <div class="alert alert-danger">{{ $message }}</div> @enderror
-    
+        <div class="row">
+            <div class="col">
+                <label for="date" class="form-label">Date</label>
+                <input type="date" name="date" class="form-control" value="{{ old('date') }}">
+                @error('date') <div class="alert">{{ $message }}</div> @enderror
+            </div>
 
-    <input type="submit" class="btn" value="Register">
+            <div class="col">
+                <label for="duedate" class="form-label">Due Date</label>
+                <input type="date" name="duedate" class="form-control" value="{{ old('duedate') }}">
+                @error('duedate') <div class="alert">{{ $message }}</div> @enderror
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="total_amount" class="form-label">Total Amount</label>
+                <input type="text" name="total_amount" class="form-control" placeholder="Enter amount" value="{{ old('total_amount') }}">
+                @error('total_amount') <div class="alert">{{ $message }}</div> @enderror
+            </div>
+
+            <div class="col">
+                <label for="status" class="form-label">Status</label>
+                <input type="text" name="status" class="form-control" placeholder="Status" value="{{ old('status') }}">
+                @error('status') <div class="alert">{{ $message }}</div> @enderror
+            </div>
+        </div>
+
+        <label for="note" class="form-label">Note</label>
+        <textarea name="note" id="note" class="form-control" placeholder="Additional notes">{{ old('note') }}</textarea>
+        @error('note') <div class="alert">{{ $message }}</div> @enderror
+
+        <button type="submit" class="btn-submit">Register</button>
     </form>
 </div>
+
 @endsection

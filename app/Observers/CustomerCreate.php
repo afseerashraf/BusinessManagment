@@ -27,10 +27,7 @@ class CustomerCreate
     /**
      * Handle the Customer "deleted" event.
      */
-    public function deleted(Customer $customer): void
-    {
-        
-    }
+    public function deleted(Customer $customer): void {}
 
     /**
      * Handle the Customer "restored" event.

@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
@@ -18,7 +17,9 @@ class InvoiceDownload extends Mailable
      * Create a new message instance.
      */
     public $invoiceCustomer;
+
     public $pdfPath;
+
     public function __construct($invoiceCustomer, $pdfPath)
     {
         $this->invoiceCustomer = $invoiceCustomer;

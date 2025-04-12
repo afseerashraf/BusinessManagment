@@ -5,94 +5,127 @@
 @section('content')
 
 <style>
-    /* General Styles */
     body {
-            font-family: 'Arial', sans-serif;
-            background-color: #121212;
-            color: #e0e0e0;
-        }
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #121212;
+        color: #e0e0e0;
+    }
 
     .container {
-        margin-top: 30px;
+        margin-top: 40px;
     }
 
     h3 {
-        font-size: 24px;
-        font-weight: bold;
-        color: #b9c7bd;
-        margin-bottom: 20px;
+        font-size: 28px;
+        font-weight: 600;
+        color: #e0f7fa;
+        margin-bottom: 30px;
+        text-align: center;
     }
 
-    /* Table Styling */
+    .alert {
+        padding: 12px 20px;
+        background-color: #1f6feb;
+        color: #fff;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
     .table {
         width: 100%;
-        margin-top: 20px;
-        background-color: #b9c7bd;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-collapse: separate;
+        border-spacing: 0 10px;
     }
 
-    .table th, .table td {
-        padding: 15px;
-        text-align: left;
-        font-size: 16px;
-    }
-
-    .table th {
+    .table thead th {
         background-color: #1f6feb;
         color: white;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
+        padding: 14px;
+        text-align: left;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     }
 
-    .table td {
-        border-bottom: 1px solid #e1e1e1;
+    .table tbody tr {
+        background-color: #1e1e1e;
+        transition: background 0.3s ease;
+        border-radius: 10px;
     }
 
     .table tbody tr:hover {
-        background-color: #f0f7ff;
-        cursor: pointer;
+        background-color: #2c2c2c;
     }
 
-    /* Responsive Design */
+    .table td {
+        padding: 14px;
+        border-top: 1px solid #2a2a2a;
+        border-bottom: 1px solid #2a2a2a;
+        color: #ddd;
+    }
+
+    .btn-action {
+        padding: 6px 12px;
+        border-radius: 5px;
+        font-size: 14px;
+        text-decoration: none;
+        transition: background 0.3s;
+    }
+
+    .btn-outline-primary {
+        background-color: transparent;
+        color: #1f6feb;
+        border: 1px solid #1f6feb;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: #1f6feb;
+        color: #fff;
+    }
+
+    .btn-outline-danger {
+        background-color: transparent;
+        color: #f44336;
+        border: 1px solid #f44336;
+        padding-top: 10px;
+    }
+
+    .btn-outline-danger:hover {
+        background-color: #f44336;
+        color: #fff;
+    }
+
     @media (max-width: 768px) {
         .table th, .table td {
-            padding: 10px;
             font-size: 14px;
+            padding: 10px;
         }
-    }
 
-    /* Utility Classes */
-    .text-muted {
-        color: #888;
-    }
-    .btn-action {
-        background-color: #1f6feb;
-        color: white;
-        padding: 8px 12px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .btn-action:hover {
-        background-color: #155ab7;
+        h3 {
+            font-size: 22px;
+        }
+        
     }
 </style>
 
+<div class="container">
+
+    {{-- Session Alerts --}}
     @if(session()->has('update'))
-    <p>{{ Session::get('update') }}</p>
+        <div class="alert">{{ Session::get('update') }}</div>
     @endif
 
     @if(session()->has('delete'))
-    <p>{{ Session::get('delete')}}</p>
+        <div class="alert">{{ Session::get('delete') }}</div>
     @endif
 
     @if(session()->has('created'))
-        <p>{{ Session::get('created') }}</p>
+        <div class="alert">{{ Session::get('created') }}</div>
     @endif
-<div class="container">
+
     <h3>Active Customers</h3>
+
     <table class="table">
         <thead>
             <tr>
@@ -113,17 +146,15 @@
                     <td>{{ $customer->phone }}</td>
                     <td>{{ $customer->address }}</td>
                     <td>
-                    <a href="{{ route('customer.edit', encrypt($customer->id)) }}" class="btn btn-outline-primary btn-sm">Edit</a>
-                   <a href="{{ route('customer.delete', encrypt($customer->id)) }}" class="btn btn-outline-danger btn-sm">Remove</a>
-                </td>
+                        
+                        <a href="{{ route('customer.edit', encrypt($customer->id)) }}" class="btn-action btn-outline-primary">Edit</a><br>
+                        <a href="{{ route('customer.delete', encrypt($customer->id)) }}" class="btn-action btn-outline-danger">Remove</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
-      
-
-
     </table>
-    
+
 </div>
 
 @endsection

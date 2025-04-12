@@ -24,8 +24,8 @@ class userRequest extends FormRequest
     {
         return [
             'name' => ['required', 'regex:/^[a-zA-Z0-9\s,.\n-]+$/'],
-            'email' => ['required', 'email'],
-            'password' => ['required',password::min(8)->letters()->numbers()],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'password' => ['required', password::min(8)->letters()->numbers()],
 
         ];
     }

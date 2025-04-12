@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('vendor_id');
             $table->string('description');
-            $table->decimal('amount', 10,2);
+            $table->decimal('amount', 10, 2);
             $table->date('date');
             $table->string('category');
             $table->string('notes')->comment('additional detiles or bout expense');

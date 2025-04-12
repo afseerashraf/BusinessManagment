@@ -23,11 +23,11 @@ class ExpenseRequest extends FormRequest
     {
         return [
             'vendor_id' => ['required', 'numeric'],
-            'description' =>  ['required', 'regex:/^[a-zA-Z0-9\s,.\n-]+$/'],
+            'description' => ['required', 'regex:/^[a-zA-Z0-9\s,.\n-]+$/'],
             'amount' => ['required', 'numeric'],
             'date' => ['required', 'date'],
             'category' => ['required'],
-            'note' => ['required' ,'regex:/^[a-zA-Z0-9\s,.\n-]+$/'],
+            'note' => ['required', 'regex:/^[a-zA-Z0-9\s,.\n-]+$/'],
         ];
     }
 }

@@ -2,15 +2,13 @@
 
 namespace App\Events;
 
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class overDueEvent  implements ShouldBroadcast
+class overDueEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -18,6 +16,7 @@ class overDueEvent  implements ShouldBroadcast
      * Create a new event instance.
      */
     public $overdue;
+
     public function __construct($invoice)
     {
         $this->overdue = $invoice;
@@ -35,9 +34,8 @@ class overDueEvent  implements ShouldBroadcast
         ];
     }
 
-    
     public function broadcastAs(): string
     {
         return 'overDue_invoice';
-    }   
+    }
 }

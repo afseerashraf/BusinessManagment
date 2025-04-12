@@ -15,7 +15,9 @@ class InvoiceDownloadMail implements ShouldQueue
      * Create a new job instance.
      */
     public $invoiceCustomer;
+
     public $pdfPath;
+
     public function __construct($invoiceCustomer, $pdfPath)
     {
         $this->invoiceCustomer = $invoiceCustomer;

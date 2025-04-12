@@ -6,7 +6,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Carbon\Carbon;
 
 class InvoicePaid extends Notification implements ShouldQueue
 {
@@ -16,6 +15,7 @@ class InvoicePaid extends Notification implements ShouldQueue
      * Create a new notification instance.
      */
     public $invoice;
+
     public function __construct($invoice)
     {
         $this->invoice = $invoice;
@@ -38,13 +38,12 @@ class InvoicePaid extends Notification implements ShouldQueue
     {
 
         return (new MailMessage)
-        ->greeting('Hello!'. $this->invoice->customers->name)
-        ->line('Your due date '.$this->invoice->due_date.' is over')
-        ->action('Check it out', url('/'))
-        ->line('Best regards!');
-      
+            ->greeting('Hello!'.$this->invoice->customers->name)
+            ->line('Your due date '.$this->invoice->due_date.' is over')
+            ->action('Check it out', url('/'))
+            ->line('Best regards!');
+
     }
-      
 
     /**
      * Get the array representation of the notification.
@@ -54,7 +53,7 @@ class InvoicePaid extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
-           
+
         ];
     }
 }

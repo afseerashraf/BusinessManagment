@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\bank\bankRequest;
 use App\Http\Requests\bank\EditRequest;
 use App\Models\Bank;
@@ -10,8 +9,9 @@ use Illuminate\Support\Facades\Crypt;
 
 class BankController extends Controller
 {
-    public function register(bankRequest $request){
-        $bank = new Bank();
+    public function register(bankRequest $request)
+    {
+        $bank = new Bank;
         $bank->account_name = $request->account_name;
         $bank->account_number = $request->account_number;
         $bank->bank_name = $request->bankName;
@@ -20,24 +20,28 @@ class BankController extends Controller
         $bank->save();
 
         toastr()->success('successfully recorded bank detiles');
+
         return redirect()->route('bank.detiles');
     }
 
-
-    public function bankDetiles(){
+    public function bankDetiles()
+    {
         $bankDetiles = Bank::all();
-        return view('bank.detiles',compact('bankDetiles'));
+
+        return view('bank.detiles', compact('bankDetiles'));
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $bankAc = Bank::find(Crypt::decrypt($id));
+
         return view('bank.edit', compact('bankAc'));
     }
 
-    public function updated(EditRequest $request){
+    public function updated(EditRequest $request)
+    {
         $bankId = Bank::find(Crypt::decrypt($request->id));
-        
-       
+
         $bankId->update([
             'account_name' => $request->account_name,
             'account_number' => $request->account_number,
@@ -46,27 +50,32 @@ class BankController extends Controller
             'balance' => $request->balance,
         ]);
         $bankId->save();
-       
+
         toastr()->success('successfully Updated Bank Detiles');
+
         return redirect()->route('bank.detiles');
 
     }
-    public function deleted($id){
+
+    public function deleted($id)
+    {
         $bankId = Bank::find(Crypt::decrypt($id));
         $bankId->delete();
         toastr()->success('successfully Deleted '.$bankId->account_name);
+
         return redirect()->route('bank.detiles');
 
     }
 
-    public function lowBalanceAlert(){
+    public function lowBalanceAlert()
+    {
         $bankAlerts = Bank::where('balance', '<', 1000)->get();
 
-        foreach($bankAlerts as $bankAlert){
+        foreach ($bankAlerts as $bankAlert) {
             toastr()->success($bankAlert->account_name.' Balance is low!');
 
             return redirect()->route('bank.detiles');
         }
-        
+
     }
 }

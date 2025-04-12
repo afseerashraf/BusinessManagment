@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::table('expenses', function (Blueprint $table) {
             $table->foreign('vendor_id')
-            ->references('id')
-            ->on('vendors')
-            ->onDelete('cascade'); // Optional: When vendor is deleted, the related expenses will be deleted
-    });
-        
+                ->references('id')
+                ->on('vendors')
+                ->onDelete('cascade'); // Optional: When vendor is deleted, the related expenses will be deleted
+        });
+
     }
 
     /**

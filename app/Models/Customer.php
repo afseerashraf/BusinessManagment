@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Notifications\Notifiable;
 use App\Observers\CustomerCreate;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 #[ObservedBy([CustomerCreate::class])]
 
@@ -17,7 +17,6 @@ class Customer extends Model
 
     protected $guarded = [];
 
-
     protected function name(): Attribute
     {
         return Attribute::make(
@@ -26,7 +25,8 @@ class Customer extends Model
         );
     }
 
-    public function invoice(){
+    public function invoice()
+    {
         return $this->hasOne(Invoice::class);
     }
 }

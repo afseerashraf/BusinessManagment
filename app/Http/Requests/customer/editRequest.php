@@ -24,7 +24,7 @@ class editRequest extends FormRequest
         return [
             'name' => ['required', 'regex:/^[a-zA-Z\s]+$/'],
             'email' => ['required', 'email'],
-            'phone' =>['required', 'numeric',  'digits_between:10,12'],
+            'phone' => ['required', 'numeric',  'digits_between:10,12'],
             'address' => ['required', 'regex:/^[a-zA-Z0-9\s,.\n-]+$/'],
         ];
     }
