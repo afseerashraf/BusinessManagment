@@ -98,7 +98,7 @@
                 <select name="customer_id" class="form-control">
                     <option value="">-- Select Customer --</option>
                     @foreach($customers as $customer)
-                        <option value="{{ $customer->id }}" {{ old('customer_id') == $customer->id ? 'selected' : '' }}>
+                        <option value="{{ $customer->id }}" >
                             {{ $customer->name }} ({{ $customer->address }})
                         </option>
                     @endforeach
@@ -136,7 +136,11 @@
 
             <div class="col">
                 <label for="status" class="form-label">Status</label>
-                <input type="text" name="status" class="form-control" placeholder="Status" value="{{ old('status') }}">
+               <select name="status" id="status">
+                <option value="">--Select Status--</option>
+                <option value="pending">Pending</option>
+                <option value="paid">Paid</option>
+               </select>
                 @error('status') <div class="alert">{{ $message }}</div> @enderror
             </div>
         </div>

@@ -28,14 +28,15 @@ class InvoiceController extends Controller
     {
         $invoice = new Invoice;
         $invoice->customer_id = $request->customer_id;
-        $latestInvoice = Invoice::latest()->first();
         $invoice->invoice_number = $request->invoice_number;
         $invoice->date = $request->date;
         $invoice->due_date = $request->duedate;
         $invoice->total_amount = $request->total_amount;
         $invoice->status = $request->status;
-        $invoice->note = $request->note;
+        $invoice->notes = $request->note;
         $invoice->save();
+
+        return redirect()->route('invoice.index');
     }
 
     public function outstandingInvoice()

@@ -23,7 +23,7 @@ class InvoiceRegister extends FormRequest
     {
         return [
             'customer_id' => ['required', 'numeric'],
-            'name' => ['required', 'regex:/^[a-zA-Z\s]+$/'],
+            'invoice_number' => ['required', 'regex:/^INV-\d{4}-\d{4}$/'],  
             'date' => ['required', 'date'],
             'duedate' => ['required', 'date'],
             'total_amount' => ['required', 'numeric'],

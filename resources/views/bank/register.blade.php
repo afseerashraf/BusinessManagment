@@ -41,8 +41,8 @@ Bank Detiles
             @csrf
             <div class="row">
                 <div class="col">
-                    <label for="name" class="form-label">Account Name</label>
-                    <input type="text" class="form-control" name="account_name" placeholder="Account Name" value="{{ old('account_name') }}">
+                    <label for="name" class="form-label">Holder Name</label>
+                    <input type="text" class="form-control" name="holder_name" placeholder="Account Name" value="{{ old('account_name') }}">
                     @error('account_name') <div class="alert alert-danger">{{ $message }}</div> @enderror
                 </div>
                 <div class="col">

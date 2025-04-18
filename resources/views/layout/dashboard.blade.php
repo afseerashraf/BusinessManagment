@@ -197,8 +197,8 @@
         <div class="dropdown">
             <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Vendor</a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ route('vendor.index') }}">Register Vendor</a></li>
-                <li><a class="dropdown-item" href="{{ route('vendor.vendors') }}">View Vendor</a></li>
+                <li><a class="dropdown-item" href="{{ route('supplier.index') }}">Register Vendor</a></li>
+                <li><a class="dropdown-item" href="{{ route('supplier.vendors') }}">View Vendor</a></li>
             </ul>
         </div>
 

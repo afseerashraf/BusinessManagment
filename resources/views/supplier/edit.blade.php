@@ -79,7 +79,7 @@
 
 <div class="container">
     <h3>Vendor Edit</h3>
-    <form action="{{ route('vendor.updated') }}" method="post">
+    <form action="{{ route('supplier.updated') }}" method="post">
         @csrf
        
         <input type="hidden" name="id" value="{{ encrypt($vendor->id) }}">

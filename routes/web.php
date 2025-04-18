@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('user.register');
 });
+
+Route::view('login', 'user.login')->name('user.login'); // when the unauthenticate user redirect this route;
 Route::prefix('user')->name('user.')->group(function () {
    
     Route::controller(userController::class)->group(function () {
@@ -19,7 +21,7 @@ Route::prefix('user')->name('user.')->group(function () {
        
         Route::post('register', 'register')->name('register');
        
-        Route::view('login', 'user.login')->name('login');
+        //Route::view('login', 'user.login')->name('login');
        
         Route::post('logined', 'login')->name('dologin');
        
@@ -61,7 +63,6 @@ Route::middleware('auth')->group(function () {
 
         });
     });
-});
 
 Route::prefix('invoice')->name('invoice.')->group(function () {
     
@@ -89,7 +90,7 @@ Route::prefix('invoice')->name('invoice.')->group(function () {
 });
 
 
-Route::prefix('vendor')->name('supplier.')->group(function () {
+Route::prefix('supplier')->name('supplier.')->group(function () {
 
     Route::controller(VendorController::class)->group(function () {
 
@@ -147,4 +148,5 @@ Route::prefix('bank')->name('bank.')->group(function () {
         Route::get('lowbalance', 'lowBalanceAlert')->name('lowBalanceAlert');
  
     });
+});
 });

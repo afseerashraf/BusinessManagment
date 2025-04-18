@@ -86,7 +86,7 @@
     <table class="table table-dark table-striped">
         <thead>
             <tr>
-                <th>Account Name</th>
+                <th>Holder Name</th>
                 <th>Account Number</th>
                 <th>Bank Name</th>
                 <th>IFSC Code</th>
@@ -98,7 +98,7 @@
         <tbody>
           @foreach($bankDetiles as $bankdetile)
             <tr>
-                <td>{{ $bankdetile->account_name }}</td>
+                <td>{{ $bankdetile->holder_name }}</td>
                 <td>{{ $bankdetile->account_number }}</td>
                 <td>{{ $bankdetile->bank_name }}</td>
                 <td>{{ $bankdetile->ifsc_code }}</td>

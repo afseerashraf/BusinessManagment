@@ -12,7 +12,7 @@ class BankController extends Controller
     public function register(bankRequest $request)
     {
         $bank = new Bank;
-        $bank->account_name = $request->account_name;
+        $bank->holder_name = $request->holder_name;
         $bank->account_number = $request->account_number;
         $bank->bank_name = $request->bankName;
         $bank->ifsc_code = $request->ifsc_code;
@@ -43,7 +43,7 @@ class BankController extends Controller
         $bankId = Bank::find(Crypt::decrypt($request->id));
 
         $bankId->update([
-            'account_name' => $request->account_name,
+            'holder_name' => $request->holder_name,
             'account_number' => $request->account_number,
             'bank_name' => $request->bankName,
             'ifsc_code' => $request->ifsc_code,

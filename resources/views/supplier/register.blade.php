@@ -79,7 +79,7 @@
 
 <div class="container">
     <h3>Vendor Register</h3>
-    <form action="{{ route('vendor.register') }}" method="post">
+    <form action="{{ route('supplier.register') }}" method="post">
         @csrf
 
 <div class="row">
@@ -91,7 +91,7 @@
 
 <div class="col">
         <label for="contact_person" class="form-label">Contact Person</label>
-        <input type="text" id="contact_person" name="contact_person" class="form-control" rows="4" placeholder="contact_person"></input>
+        <input type="text" id="contact_person" name="contact person" class="form-control" rows="4" placeholder="contact_person"></input>
         @error('contact_person') <div class="alert alert-danger">{{ $message }}</div> @enderror
         </div>
     </div>

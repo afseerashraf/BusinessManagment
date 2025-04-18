@@ -120,8 +120,8 @@
                     <td>{{ $vendor->phone }}</td>
                     <td>{{ $vendor->address }}</td>
                     <td>
-                        <a href="{{ route('vendor.edit', encrypt($vendor->id)) }}" class="btn btn-outline-primary btn-sm">Edit</a>
-                        <a href="{{ route('vendor.delete', encrypt($vendor->id)) }}" class="btn btn-outline-danger btn-sm"
+                        <a href="{{ route('supplier.edit', encrypt($vendor->id)) }}" class="btn btn-outline-primary btn-sm">Edit</a>
+                        <a href="{{ route('supplier.delete', encrypt($vendor->id)) }}" class="btn btn-outline-danger btn-sm"
                            onclick="return confirm('Are you sure you want to delete this vendor?');">Delete</a>
                     </td>
                 </tr>

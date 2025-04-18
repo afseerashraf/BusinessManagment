@@ -30,7 +30,7 @@ class InvoiceDownloadMail implements ShouldQueue
     public function handle(): void
     {
 
-        Mail::to('afseer@gmail.com')->send(new InvoiceDownload($this->invoiceCustomer, $this->pdfPath));
+        Mail::to($this->invoiceCustomer->customers->email)->send(new InvoiceDownload($this->invoiceCustomer, $this->pdfPath));
 
     }
 }
