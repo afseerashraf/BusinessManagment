@@ -136,7 +136,7 @@
 
             <div class="col">
                 <label for="status" class="form-label">Status</label>
-               <select name="status" id="status">
+               <select name="status" id="status" class="form-control">
                 <option value="">--Select Status--</option>
                 <option value="pending">Pending</option>
                 <option value="paid">Paid</option>

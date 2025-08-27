@@ -118,7 +118,7 @@
                 <td>{{ $invoice->notes }}</td>
                 <td style="white-space: nowrap;">
                     <a href="{{ route('invoice.edit', encrypt($invoice->id)) }}" class="btn btn-outline-primary btn-sm" style="margin-right: 5px;">Edit</a>
-                    <a href="{{ route('invoice.delete', encrypt($invoice->id)) }}" class="btn btn-outline-danger btn-sm" style="margin-right: 5px;">Delete</a>
+                    <a href="{{ route('invoice.delete', encrypt($invoice->id)) }}" class="btn btn-outline-danger btn-sm" style="margin-right: 5px;" onclick="return confirm('Are you sure wanna remove the invoice');">Delete</a>
                     <a href="{{ route('invoice.download', encrypt($invoice->id)) }}" class="btn btn-outline-success btn-sm">Download</a>
                 </td>
 

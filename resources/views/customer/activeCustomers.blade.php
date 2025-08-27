@@ -148,7 +148,7 @@
                     <td>
                         
                         <a href="{{ route('customer.edit', encrypt($customer->id)) }}" class="btn-action btn-outline-primary">Edit</a><br>
-                        <a href="{{ route('customer.delete', encrypt($customer->id)) }}" class="btn-action btn-outline-danger">Remove</a>
+                        <a href="{{ route('customer.delete', encrypt($customer->id)) }}" class="btn-action btn-outline-danger" onclick="return confirm('Are you sure wanna remove the customer');">Remove</a>
                     </td>
                 </tr>
             @endforeach
